@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             StageZeroTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    OpenLinkButton( )
+                    OpenLinkButton()
                 }
             }
         }
@@ -40,36 +40,67 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GitHubLinkButton(onClick: () -> Unit) {
-    Column( modifier = Modifier.fillMaxSize(),
+fun GitHubLinkButton(onClickGitHub: () -> Unit, onClickFlutter: () -> Unit, onClickReact: () -> Unit, onClickKotlin: () -> Unit, onClickDev: () -> Unit,onClickAndroid:()->Unit,onClickIOS:()->Unit,onClickTelex:()->Unit,onClickDelve:()->Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-
-        ElevatedButton(onClick = { onClick() }) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        ElevatedButton(onClick = { onClickGitHub() }) {
             Text("Open GitHub Link")
         }
         Spacer(modifier = Modifier.height(16.dp))
-        ElevatedButton(onClick = { onClick() }) {
-            Text("Open GitHub Link")
+        ElevatedButton(onClick = { onClickFlutter() }) {
+            Text("Flutter Page")
         }
         Spacer(modifier = Modifier.height(16.dp))
-        ElevatedButton(onClick = { onClick() }) {
-            Text("Open GitHub Link")
+        ElevatedButton(onClick = { onClickReact() }) {
+            Text("React-native Page")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        ElevatedButton(onClick = { onClickKotlin() }) {
+            Text("Kotlin Page")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        ElevatedButton(onClick = { onClickDev() }) {
+            Text("Mobile Developers Page")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        ElevatedButton(onClick = { onClickAndroid() }) {
+            Text("Android Developers Page")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        ElevatedButton(onClick = { onClickIOS() }) {
+            Text("iOS Developers Page")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        ElevatedButton(onClick = { onClickTelex() }) {
+            Text("Telex Page")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        ElevatedButton(onClick = { onClickDelve() }) {
+            Text("Delve Page")
         }
 
     }
-
 }
 
 @Composable
 fun OpenLinkButton() {
     val context = LocalContext.current
-    GitHubLinkButton {
-        openLink(context, "https://github.com/FrankKamala/stage0.git")
-    }
+    GitHubLinkButton(
+        onClickGitHub = { openLink(context, "https://github.com/FrankKamala/stage0.git") },
+        onClickFlutter = { openLink(context, "https://flutter.dev") },
+        onClickReact = { openLink(context, "https://reactnative.dev") },
+        onClickKotlin = { openLink(context, "https://kotlinlang.org") },
+        onClickDev = { openLink(context, "https://hng.tech/hire/android-developers")},
+        onClickAndroid = { openLink(context, "https://hng.tech/hire/android-developers")},
+        onClickIOS = { openLink(context, "https://hng.tech/hire/android-developers")},
+        onClickTelex = { openLink(context, "https://hng.tech/hire/android-developers")},
+        onClickDelve = { openLink(context, "https://delve.fun/")},
 
+    )
 }
-
 
 fun openLink(context: Context, url: String) {
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
