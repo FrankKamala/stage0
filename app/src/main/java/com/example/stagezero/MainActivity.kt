@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.stagezero
 
 import android.content.Context
@@ -15,8 +17,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,12 +35,24 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StageZeroTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { AppBar() } // Add the AppBar here
+                ) { innerPadding ->
                     OpenLinkButton()
                 }
             }
         }
     }
+}
+@Composable
+fun AppBar() {
+    TopAppBar(
+        title = { Text("StageZero") },
+        actions = {
+
+        }
+    )
 }
 
 @Composable
@@ -84,6 +100,7 @@ fun GitHubLinkButton(onClickGitHub: () -> Unit, onClickFlutter: () -> Unit, onCl
 
     }
 }
+
 
 @Composable
 fun OpenLinkButton() {
